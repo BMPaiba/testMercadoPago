@@ -2,7 +2,10 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { MercadoPagoConfig, Preference } = require("mercadopago");
-const client = new MercadoPagoConfig({ accessToken: "TEST-203586994908608-020721-78e30702a617374fd03ee1ce0eab3ed6-1674411644" });
+const client = new MercadoPagoConfig({
+  accessToken:
+    "TEST-203586994908608-020721-78e30702a617374fd03ee1ce0eab3ed6-1674411644",
+});
 
 const server = express();
 const port = 3000;
@@ -33,15 +36,13 @@ server.post("/create_preference", async (req, res) => {
       },
       auto_return: "approved",
     };
-    
-    const preference = await Preference(client)
-    const result = await preference.create(body);
-    
-    
-    res.json({
-      id: result.id
-    })
 
+    const preference = await Preference(client);
+    const result = await preference.create(body);
+
+    res.json({
+      id: result.id,
+    });
   } catch (error) {
     console.log("error: ", error.message);
   }
@@ -49,4 +50,4 @@ server.post("/create_preference", async (req, res) => {
 
 server.listen(port, () => {
   console.log(`server listening on port ${port}`);
-})
+});
