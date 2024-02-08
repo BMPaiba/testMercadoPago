@@ -22,7 +22,9 @@ export const Product = () => {
 
       const { id } = response.data;
       return id;
-    } catch (error) {}
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   const handleBuy = async () => {
@@ -30,7 +32,7 @@ export const Product = () => {
     if (preferenceId) {
       setPreferenceId(preferenceId);
     }
-    console.log(preferenceId);
+    console.log('preference id : ',preferenceId);
   };
 
   return (

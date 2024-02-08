@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { MercadoPagoConfig, Preference } = require("mercadopago");
+
 const client = new MercadoPagoConfig({
   accessToken:
     "TEST-203586994908608-020721-78e30702a617374fd03ee1ce0eab3ed6-1674411644",
@@ -25,7 +26,7 @@ server.post("/create_preference", async (req, res) => {
         {
           title: req.body.title,
           quantity: Number(req.body.quantity),
-          unit_price: req.body.price,
+          unit_price: Number(req.body.price),
           currency_id: "ARS",
         },
       ],
@@ -39,7 +40,7 @@ server.post("/create_preference", async (req, res) => {
 
     const preference = await Preference(client);
     const result = await preference.create(body);
-
+    console.log(result);
     res.json({
       id: result.id,
     });
