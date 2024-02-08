@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { MercadoPagoConfig, Preference } = require("mercadopago");
-const client = new MercadoPagoConfig({ accessToken: "YOUR_ACCESS_TOKEN" });
+const client = new MercadoPagoConfig({ accessToken: "TEST-203586994908608-020721-78e30702a617374fd03ee1ce0eab3ed6-1674411644" });
 
 const server = express();
 const port = 3000;
