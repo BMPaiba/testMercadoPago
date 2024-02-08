@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import "./Product.css";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 export const Product = () => {
