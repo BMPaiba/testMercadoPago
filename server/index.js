@@ -4,9 +4,10 @@ const morgan = require("morgan");
 const {  MercadoPagoConfig,Preference } = require("mercadopago");
 
 
+
 const client = new MercadoPagoConfig({
   accessToken:
-    "TEST-203586994908608-020721-78e30702a617374fd03ee1ce0eab3ed6-1674411644",
+    "APP_USR-203586994908608-020721-8aa31fc02541f3b0d8b3fcf720a360eb-1674411644",
 });
 
 const server = express();
@@ -41,6 +42,7 @@ server.post("/create_preference", async (req, res) => {
       };
       const preference =new Preference(client);
       const result = await preference.create({body});
+      console.log(result);
       res.json({
           id : result.id,
       })

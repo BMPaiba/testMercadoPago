@@ -5,7 +5,7 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 export const Product = () => {
   const [preferenceId, setPreferenceId] = useState(null);
 
-  initMercadoPago("TEST-497b93a7-7896-4e29-941d-02f98dd3c5ca", {
+  initMercadoPago("APP_USR-6304f6f0-f1a0-4913-a265-979e7380070a", {
     locale: "es-AR",
   });
 
