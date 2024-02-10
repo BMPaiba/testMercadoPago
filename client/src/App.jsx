@@ -9,7 +9,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Home />} />{" "}
-        <Route path="/mercadopago-authorization/success" element={<AuthorizationSuccessPage />} />
+        <Route path="/mercadopago-authorization/success" element={<AuthorizationSuccessPage location={window.location} />} />
         <Route path="/:cliente" element={<Compras />} />
         <Route path="/addclient" element={<NewClient />} />
       </Routes>
