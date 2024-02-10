@@ -15,6 +15,10 @@ const AuthorizationSuccessPage = ({ location }) => {
 //     exchangeAuthorizationCodeForToken(code);
 //   }, [location.search]);
 
+const {pathname} = useLocation()
+
+console.log("pathname", pathname);
+
   const exchangeAuthorizationCodeForToken = async (code) => {
     const clientId = "7378685924902197"; // Reemplaza con tu ID de cliente de MercadoPago
     const clientSecret = "JCt3b9pWjxom25YuYrP4l1nKTr8ksR5Q"; // Reemplaza con tu secreto de cliente de MercadoPago
