@@ -91,7 +91,7 @@ export default function NewClient() {
     const redirectUri =
       "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
   
-    const clientId = "203586994908608"; // Reemplaza con tu ID de cliente de MercadoPago
+    const clientId = "7378685924902197"; // Reemplaza con tu ID de cliente de MercadoPago
 
     const state = uuidv4();
 

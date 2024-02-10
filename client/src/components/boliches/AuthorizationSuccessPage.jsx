@@ -15,8 +15,8 @@ const AuthorizationSuccessPage = ({ location }) => {
   }, [location.search]);
 
   const exchangeAuthorizationCodeForToken = async (code) => {
-    const clientId = "203586994908608"; // Reemplaza con tu ID de cliente de MercadoPago
-    const clientSecret = "vjylCFehLLuAxqZDzTJf5zPoQRHDHEhO"; // Reemplaza con tu secreto de cliente de MercadoPago
+    const clientId = "7378685924902197"; // Reemplaza con tu ID de cliente de MercadoPago
+    const clientSecret = "JCt3b9pWjxom25YuYrP4l1nKTr8ksR5Q"; // Reemplaza con tu secreto de cliente de MercadoPago
     const redirectUri =
       "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
 
