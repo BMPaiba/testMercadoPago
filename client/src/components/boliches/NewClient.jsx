@@ -60,7 +60,7 @@ export default function NewClient() {
 
     console.log(authorizationUrl);
 
-    navigate(authorizationUrl);
+    window.open(authorizationUrl, '_blank');
     // return authorizationUrl;
   };
 
