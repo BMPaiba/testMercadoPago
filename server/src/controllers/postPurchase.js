@@ -1,12 +1,27 @@
 const { Preference, default: MercadoPagoConfig } = require("mercadopago");
+const {Administrator} = require("../db");
+const mercadopago = require("mercadopago"); // require
 
 const postPurchase = async (req, res) => {
     try {
+
+        const urlRecibida = req.body.path;
+
+        // console.log(' esta es la url recibida => ',urlRecibida);
+
+        const searchToken = await Administrator.findOne({ where: { name: urlRecibida } });
+
+        const token = searchToken.dataValues.token
+      
+        console.log('este es el token => ',token);
+
+
         const client = new MercadoPagoConfig({
             accessToken:
-              "APP_USR-203586994908608-020721-8aa31fc02541f3b0d8b3fcf720a360eb-1674411644",
+              token,
           });
-  
+
+        
         const body = {
             items: [
                 {
@@ -25,6 +40,7 @@ const postPurchase = async (req, res) => {
         };
         const preference =new Preference(client);
         const result = await preference.create({body});
+        // console.log(mercadopago)
         res.json({
             id : result.id,
         })
