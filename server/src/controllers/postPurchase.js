@@ -5,11 +5,11 @@ const mercadopago = require("mercadopago"); // require
 const postPurchase = async (req, res) => {
     try {
 
-        const urlRecibida = req.body.path;
+        const urlRecibida = req.body.path;  
 
-        console.log(mercadopago.MerchantOrder);
+        // console.log(mercadopago.MerchantOrder);
 
-        const searchToken = await Administrator.findOne({ where: { name: urlRecibida } });
+        const searchToken = await Administrator.findOne({ where: { name: urlRecibida } }); 
 
         const token = searchToken.dataValues.token
 
@@ -39,12 +39,12 @@ const postPurchase = async (req, res) => {
                 }
             ],
             back_urls: {
-                success: `https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA`,
-                failure: "https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA",
-                pending: "https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA",
+                success: `https://www.youtube.com`,
+                failure: "https://www.youtube.com",
+                pending: "https://www.youtube.com",
             },
             auto_return: "approved",
-            notification_url: "https://e720-190-237-16-208.sa.ngrok.io/webhook",
+            // notification_url: "https://e720-190-237-16-208.sa.ngrok.io/webhook",
         };
         const preference =new Preference(client);
         const result = await preference.create({body});
@@ -66,25 +66,3 @@ const postPurchase = async (req, res) => {
 
 
 
-//   const { v4: uuidv4 } = require('uuid');
-
-// function generateAuthorizationUrl(clientId, redirectUri) {
-//   // Genera un ID único para el estado
-//   const state = uuidv4();
-
-  
-    
-//   //mercadopago clientId =>  mi cuenta de vendedor de plataforma
-
-//   // Construye la URL de autorización de MercadoPago
-//   const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
-
-//   return authorizationUrl;
-// }
-
-// // Ejemplo de uso
-// const clientId = "TU_CLIENT_ID"; // Reemplaza con tu ID de cliente de MercadoPago
-// const redirectUri = "https://testmp-ro6r.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
-
-// const authorizationUrl = generateAuthorizationUrl(clientId, redirectUri);
-// console.log("URL de autorización de MercadoPago:", authorizationUrl);

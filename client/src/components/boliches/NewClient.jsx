@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function NewClient() {
   const urlCreateUser = "http://localhost:3000/administrator";
@@ -11,6 +12,12 @@ export default function NewClient() {
   });
 
   const [dataUser, setDataUser] = useState({});
+
+  const navigate = useNavigate();
+
+  const goHome = () => {
+    navigate("/");
+  };
 
   const createUser = (e) => {
     setBody({
@@ -37,6 +44,23 @@ export default function NewClient() {
 
   const actual = () => {
     console.log(body);
+  };
+
+  
+  const authorization = () => {
+    const redirectUri =
+      "https://testmp-ro6r.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
+  
+    const clientId = "203586994908608"; // Reemplaza con tu ID de cliente de MercadoPago
+
+    const state = uuidv4();
+
+    const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
+
+    console.log(authorizationUrl);
+
+    navigate(authorizationUrl);
+    // return authorizationUrl;
   };
 
   return (
@@ -72,6 +96,8 @@ export default function NewClient() {
       />
       <button onClick={actual}>Actualizar log</button>
       <button onClick={addUser}>Create User</button>
+      <button onClick={authorization}>autorizar</button>
+      <button onClick={goHome}>Home</button>
     </div>
   );
 }

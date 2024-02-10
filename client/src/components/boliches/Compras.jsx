@@ -9,21 +9,22 @@ export default function Compras() {
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
 
-  const home = '/'
+  const home = "/";
 
   const goHome = (e) => {
-    const {value} = e.target
+    const { value } = e.target;
     navigate(`${value}`);
-  }
+  };
 
   const [preferenceId, setPreferenceId] = useState(null);
-  const [apiKey, setapiKey ] = useState(null);
+  const [apiKey, setapiKey] = useState(null);
 
   const pathToSend = pathname.startsWith("/")
     ? pathname.substring(1)
     : pathname;
 
-    // const pathToSend= 'narcoboli'
+  // const pathToSend= 'tuturraca' //nombre del collaborator
+  // const pathToSend= 'narcoboli'
 
   const keyData = async () => {
     try {
@@ -35,14 +36,11 @@ export default function Compras() {
     }
   };
 
-
-  console.log('key ==> ',apiKey);
+  console.log("key ==> ", apiKey);
 
   initMercadoPago(apiKey, {
     locale: "es-AR",
   });
-
-
 
   const createProference = async () => {
     try {
@@ -52,7 +50,7 @@ export default function Compras() {
           title: "BANANITA DOLCA",
           quantity: 1,
           price: 10,
-          path: pathToSend
+          path: pathToSend,
         }
       );
 
@@ -62,8 +60,6 @@ export default function Compras() {
       console.log(error.message);
     }
   };
-
-  
 
   const [data, setData] = useState(null);
 
@@ -105,7 +101,9 @@ export default function Compras() {
             <p>Redirigiendo a Mercado Pago...</p>
           )} */}
 
-          <button value={home} onClick={goHome}>Home</button>
+      <button value={home} onClick={goHome}>
+        Home
+      </button>
     </div>
   );
 }
