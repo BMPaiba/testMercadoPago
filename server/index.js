@@ -8,7 +8,7 @@ const { conn } = require("./src/db");
 
 server.listen(PORT, async () => {
   try {
-   await conn.sync({force:true})
+   await conn.sync({force:false})
     console.log("Server raised in port: " + PORT);
   } catch (error) {
    console.log(error.message);

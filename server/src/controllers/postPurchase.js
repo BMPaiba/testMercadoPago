@@ -12,7 +12,7 @@ const postPurchase = async (req, res) => {
                 {
                     title: req.body.title,
                     quantity: Number(req.body.quantity),
-                    unit_price: Number(req.body.price),
+                    unit_price: 10,
                     currency_id: "ARS",
                 },
             ],
