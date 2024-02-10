@@ -1,7 +1,7 @@
 import Compras from "./components/boliches/Compras";
 import Home from "./components/boliches/Home";
 import { Route, Routes } from "react-router-dom";
-import NewClient from "./components/clients/newClient";
+import NewClient from "./components/boliches/NewClient";
 
 function App() {
   return (
