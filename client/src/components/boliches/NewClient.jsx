@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+const { v4: uuidv4 } = require("uuid");
 
 export default function NewClient() {
   const urlCreateUser = "http://localhost:3000/administrator";
