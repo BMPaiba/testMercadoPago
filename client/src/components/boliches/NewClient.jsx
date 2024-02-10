@@ -97,9 +97,7 @@ export default function NewClient() {
 
     const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
 
-    console.log(authorizationUrl);
-
-    
+    console.log(authorizationUrl);    
 
     window.open(authorizationUrl, '_blank');
     // return authorizationUrl;

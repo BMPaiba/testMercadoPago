@@ -3,6 +3,7 @@ const postAdministrator = require("../controllers/postAdministrator");
 const postKey = require("../controllers/postKey");
 const postPurchase = require("../controllers/postPurchase");
 const postURL = require("../controllers/postURL");
+const setToken = require("../controllers/setToken");
 
 const router = require("express").Router();
 
@@ -13,6 +14,8 @@ router.post("/administrator", postAdministrator);
 
 router.post('/url', postURL)
 router.post('/key', postKey)
+
+router.get('/mercadopago-authorization/success' , setToken)
 
 //router.get( '/mercadopago-authorization/success' , setToken) //guardar token publico del administrador => redireccionar al panel y mostrar como autorizado
 //o a otro componente =>  autorizacion completa

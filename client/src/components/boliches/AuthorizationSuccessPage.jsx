@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 const AuthorizationSuccessPage = ({ location }) => {
   //declarar location aqui se puede ?
   const [code, setCode] = useState(null);
 
-  useEffect(() => {
-    // Extraer el código de autorización de la URL
-    const searchParams = new URLSearchParams(location.search);
-    const code = searchParams.get("code");
-    console.log("aqui es un log", code);
-    // Intercambiar el código de autorización por un token de acceso
-    exchangeAuthorizationCodeForToken(code);
-  }, [location.search]);
+//   useEffect(() => {
+//     // Extraer el código de autorización de la URL
+//     const searchParams = new URLSearchParams(location.search);
+//     const code = searchParams.get("code");
+//     console.log("aqui es un log", code);
+//     // Intercambiar el código de autorización por un token de acceso
+//     exchangeAuthorizationCodeForToken(code);
+//   }, [location.search]);
 
   const exchangeAuthorizationCodeForToken = async (code) => {
     const clientId = "7378685924902197"; // Reemplaza con tu ID de cliente de MercadoPago
@@ -28,6 +29,10 @@ const AuthorizationSuccessPage = ({ location }) => {
       redirect_uri: redirectUri,
     };
 
+    const {pathname} = useLocation()
+
+    console.log("pathname", pathname);
+
     try {
       const response = await axios.post(
         "https://api.mercadopago.com/oauth/token",
@@ -41,17 +46,17 @@ const AuthorizationSuccessPage = ({ location }) => {
       const accessToken = response.data.access_token;
       console.log("Token de acceso:", accessToken);
     } catch (error) {
-        console.log(error);
-    //   if (error.response) {
-    //     console.error(
-    //       "Error en la respuesta del servidor:",
-    //       error.response.data
-    //     );
-    //   } else if (error.request) {
-    //     console.error("Error en la solicitud:", error.request);
-    //   } else {
-    //     console.error("Error general:", error.message);
-    //   }
+      console.log(error);
+      //   if (error.response) {
+      //     console.error(
+      //       "Error en la respuesta del servidor:",
+      //       error.response.data
+      //     );
+      //   } else if (error.request) {
+      //     console.error("Error en la solicitud:", error.request);
+      //   } else {
+      //     console.error("Error general:", error.message);
+      //   }
     }
   };
 
