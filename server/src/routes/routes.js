@@ -14,5 +14,8 @@ router.post("/administrator", postAdministrator);
 router.post('/url', postURL)
 router.post('/key', postKey)
 
+//router.get( '/mercadopago-authorization/success' , setToken) //guardar token publico del administrador => redireccionar al panel y mostrar como autorizado
+//o a otro componente =>  autorizacion completa
+
 
 module.exports = router;
