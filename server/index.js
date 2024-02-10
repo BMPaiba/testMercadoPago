@@ -1,62 +1,17 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const {  MercadoPagoConfig,Preference } = require("mercadopago");
+const PORT = 3000;
+const server = require("./src/app");
+const { conn } = require("./src/db");
 
+// server.listen(PORT, () => {
+//    console.log('Server raised in port: ' + PORT);
+// });
 
-
-const client = new MercadoPagoConfig({
-  accessToken:
-    "APP_USR-203586994908608-020721-8aa31fc02541f3b0d8b3fcf720a360eb-1674411644",
-});
-
-const server = express();
-const port = 3000;
-
-server.use(cors());
-server.use(morgan("dev"));
-server.use(express.json());
-
-server.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-server.post("/create_preference", async (req, res) => {
+server.listen(PORT, async () => {
   try {
-
-      const body = {
-          items: [
-              {
-                  title: req.body.title,
-                  quantity: Number(req.body.quantity),
-                  unit_price: Number(req.body.price),
-                  currency_id: "ARS",
-              },
-          ],
-          back_urls: {
-              success: `https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA`,
-              failure: "https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA",
-              pending: "https://www.youtube.com/watch?v=JUXxxjRECRg&ab_channel=LAMEDIAB%C3%81VARA",
-          },
-          auto_return: "approved",
-      };
-      const preference =new Preference(client);
-      const result = await preference.create({body});
-      console.log(result);
-      res.json({
-          id : result.id,
-      })
+   await conn.sync({force:true})
+    console.log("Server raised in port: " + PORT);
+  } catch (error) {
+   console.log(error.message);
   }
-  catch (error) {
-      console.log(error);
-      res.status(500).json({
-          error: "Error al crear la preferencia :("
-      });
-  }
-
 });
 
-
-server.listen(port, () => {
-  console.log(`El servidor está corriendo en el puerto ${port}`);
-});

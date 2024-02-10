@@ -1,8 +1,15 @@
 import { useState } from "react";
 import axios from "axios";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { useLocation } from "react-router-dom";
 
 export const Product = () => {
+
+  const {pathname} = useLocation();
+
+
+  console.log(pathname);
+
   const [preferenceId, setPreferenceId] = useState(null);
 
   initMercadoPago("APP_USR-6304f6f0-f1a0-4913-a265-979e7380070a", {
@@ -20,6 +27,7 @@ export const Product = () => {
         }
       );
 
+
       const { id } = response.data;
       return id;
     } catch (error) {
@@ -28,6 +36,7 @@ export const Product = () => {
   };
 
   const handleBuy = async () => {
+    
     const preferenceId = await createProference();
     if (preferenceId) {
       setPreferenceId(preferenceId);
