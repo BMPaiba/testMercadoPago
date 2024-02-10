@@ -28,19 +28,4 @@ export default function AuthMP() {
   );
 }
 
-// function authorization(clientId, redirectUri) {
-//   // Genera un ID único para el estado
-//   const state = uuidv4();
 
-//   const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
-
-//   return authorizationUrl;
-// }
-
-// // Ejemplo de uso
-// const clientId = "TU_CLIENT_ID"; // Reemplaza con tu ID de cliente de MercadoPago
-// const redirectUri =
-//   "https://testmp-ro6r.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
-
-// const authorizationUrl = generateAuthorizationUrl(clientId, redirectUri);
-// console.log("URL de autorización de MercadoPago:", authorizationUrl);
