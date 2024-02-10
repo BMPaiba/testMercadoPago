@@ -3,20 +3,27 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
-export default function Narcoboli() {
+export default function Compras() {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
 
+  const home = '/'
+
+  const goHome = (e) => {
+    const {value} = e.target
+    navigate(`${value}`);
+  }
+
   const [preferenceId, setPreferenceId] = useState(null);
   const [apiKey, setapiKey ] = useState(null);
 
-  // const pathToSend = pathname.startsWith("/")
-  //   ? pathname.substring(1)
-  //   : pathname;
+  const pathToSend = pathname.startsWith("/")
+    ? pathname.substring(1)
+    : pathname;
 
-    const pathToSend= 'narcoboli'
+    // const pathToSend= 'narcoboli'
 
   const keyData = async () => {
     try {
@@ -97,6 +104,8 @@ export default function Narcoboli() {
       {/* {preferenceId && (
             <p>Redirigiendo a Mercado Pago...</p>
           )} */}
+
+          <button value={home} onClick={goHome}>Home</button>
     </div>
   );
 }

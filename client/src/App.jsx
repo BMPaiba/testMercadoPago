@@ -1,17 +1,15 @@
-import Narcoboli from "./components/boliches/narcoboli";
-import Tuturraca from "./components/boliches/tuturraca";
-import Init from "./components/init/Init";
-import { Product } from "./components/mercadopago/product";
+import Compras from "./components/boliches/Compras";
+import Home from "./components/boliches/Home";
 import { Route, Routes } from "react-router-dom";
+import NewClient from "./components/clients/newClient";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Init/>} />
-        <Route path="/:client/mercadopago" element={<Product />} />
-        <Route path="/narcoboli" element={<Narcoboli />} />
-        <Route path="/tuturraca" element={<Tuturraca />} />
+        <Route path="/" element={<Home />} />{" "}
+        <Route path="/:cliente" element={<Compras />} />
+        <Route path="/addclient" element={<NewClient />} />
       </Routes>
     </>
   );
