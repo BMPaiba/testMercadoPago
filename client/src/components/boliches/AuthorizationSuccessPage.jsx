@@ -19,8 +19,8 @@ const AuthorizationSuccessPage = ({ location }) => {
     axios
       .post("http://localhost:3000/mercadopago-authorization/success",{code})
       .then((response) => {
-        const {data} = response.data.access_token;
-        console.log("Token de acceso:", accessToken);
+        const {data} = response
+        console.log("Token de acceso:", data);
       })
       .catch((error) => {
         console.error("Error:", error.request);

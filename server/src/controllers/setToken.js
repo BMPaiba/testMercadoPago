@@ -34,26 +34,7 @@ const setToken = async (req, res) => {
   });
 
 
-  // const oauth = new OAuth(client);
 
-
-  // const code = "TG-65c7fcbadd4d06000192d9d8-1676030810"
-  
-  // oauth
-  //   .create({
-  //     "client_secret": CLIENT_SECRET,
-  //     "client_id": CLIENT_ID,
-  //     "code": code,
-  //     "redirect_uri":
-  //       "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success",
-  //   })
-  //   .then((result) => {
-  //     res.json(result);
-  //   })
-  //   .catch((error) => {
-  //     console.error(error);
-  //     res.status(500).json({ error: "Error en el servidor" });
-  //   });
 };
 
 module.exports = setToken;
