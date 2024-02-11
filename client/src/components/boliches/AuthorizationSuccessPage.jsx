@@ -4,64 +4,27 @@ import { useLocation } from "react-router-dom";
 
 const AuthorizationSuccessPage = ({ location }) => {
   //declarar location aqui se puede ?
-  const [code, setCode] = useState(null);
 
-//   useEffect(() => {
-//     // Extraer el código de autorización de la URL
-//     const searchParams = new URLSearchParams(location.search);
-//     const code = searchParams.get("code");
-//     console.log("aqui es un log", code);
-//     // Intercambiar el código de autorización por un token de acceso
-//     exchangeAuthorizationCodeForToken(code);
-//   }, [location.search]);
-
-const {pathname} = useLocation()
-
-console.log("pathname", pathname);
+  useEffect(() => {
+    // Extraer el código de autorización de la URL
+    const searchParams = new URLSearchParams(location.search);
+    const code = searchParams.get("code");
+    console.log("aqui es un log actualizado", code);
+    // Intercambiar el código de autorización por un token de acceso
+    exchangeAuthorizationCodeForToken(code);
+  }, [location.search]);
 
   const exchangeAuthorizationCodeForToken = async (code) => {
-    const clientId = "7378685924902197"; // Reemplaza con tu ID de cliente de MercadoPago
-    const clientSecret = "JCt3b9pWjxom25YuYrP4l1nKTr8ksR5Q"; // Reemplaza con tu secreto de cliente de MercadoPago
-    const redirectUri =
-      "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success"; // Reemplaza con tu URL de redirección
-
-    const data = {
-      grant_type: "authorization_code",
-      client_id: clientId,
-      client_secret: clientSecret,
-      code: code,
-      redirect_uri: redirectUri,
-    };
-
-    const {pathname} = useLocation()
-
-    console.log("pathname", pathname);
-
-    try {
-      const response = await axios.post(
-        "https://api.mercadopago.com/oauth/token",
-        data,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      const accessToken = response.data.access_token;
-      console.log("Token de acceso:", accessToken);
-    } catch (error) {
-      console.log(error);
-      //   if (error.response) {
-      //     console.error(
-      //       "Error en la respuesta del servidor:",
-      //       error.response.data
-      //     );
-      //   } else if (error.request) {
-      //     console.error("Error en la solicitud:", error.request);
-      //   } else {
-      //     console.error("Error general:", error.message);
-      //   }
-    }
+  
+    axios
+      .post("http://localhost:3000/mercadopago-authorization/success",{code})
+      .then((response) => {
+        const {data} = response.data.access_token;
+        console.log("Token de acceso:", accessToken);
+      })
+      .catch((error) => {
+        console.error("Error:", error.request);
+      });
   };
 
   return (
@@ -74,40 +37,3 @@ console.log("pathname", pathname);
 
 export default AuthorizationSuccessPage;
 
-// const axios = require('axios');
-
-// const exchangeAuthorizationCodeForToken = async (clientId, clientSecret, code) => {
-//   const data = {
-//     client_id: clientId,
-//     client_secret: clientSecret,
-//     code: code,
-//     grant_type: 'authorization_code'
-//   };
-
-//   try {
-//     const response = await axios.post('https://api.mercadopago.com/oauth/token', data, {
-//       headers: {
-//         'Content-Type': 'application/json'
-//       }
-//     });
-
-//     const accessToken = response.data.access_token;
-//     console.log("Token de acceso:", accessToken);
-//     // Realizar cualquier acción necesaria con el token de acceso
-//   } catch (error) {
-//     if (error.response) {
-//       console.error("Error en la respuesta del servidor:", error.response.data);
-//     } else if (error.request) {
-//       console.error("Error en la solicitud:", error.request);
-//     } else {
-//       console.error("Error general:", error.message);
-//     }
-//   }
-// };
-
-// // Usar la función con los parámetros adecuados
-// const clientId = "TU_CLIENT_ID";
-// const clientSecret = "TU_CLIENT_SECRET";
-// const code = "TG-XXXXXXXX-241983636"; // Reemplaza con el código de autorización real
-
-// exchangeAuthorizationCodeForToken(clientId, clientSecret, code);
