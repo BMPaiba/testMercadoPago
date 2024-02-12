@@ -28,7 +28,7 @@ const AuthorizationSuccessPage = ({ location }) => {
 
   return (
     <div>
-      <h1>¡Autorización exitosa!</h1>
+      <h1>¡Bien ahi!</h1>
     </div>
   );
 };
