@@ -1,7 +1,8 @@
-import { STATUS_LOGIN } from './actions.type'
+import { PATH, STATUS_LOGIN } from './actions.type'
 
 const initialState = {
-    status_login: false
+    status_login: false,
+    pathanme: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -11,6 +12,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 status_login: true // Actualiza status_login usando el payload
+            };
+            case PATH:
+            return {
+                ...state,
+                pathanme: payload // Actualiza status_login usando el payload
             };
         default:
             return state; // Devuelve el estado sin cambios si no hay acción correspondiente

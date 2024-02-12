@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import { path } from "../../redux/actions";
 
 export default function Compras() {
   const { pathname } = useLocation();
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
@@ -23,11 +26,7 @@ export default function Compras() {
   const pathToSend = pathname.startsWith("/")
     ? pathname.substring(1)
     : pathname;
-
-      // Obtener la URL actual
-  const currentUrl = window.location.href;
-
-  console.log(currentUrl);
+  
 
   const keyData = async () => {
     try {
@@ -42,11 +41,12 @@ export default function Compras() {
     locale: "es-AR",
   });
   const authorization = () => {
+    dispatch(path(pathToSend))
     const redirectUri ="https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
     const clientId = "7378685924902197";
     const state = uuidv4();
     const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
-    window.location.href = authorizationUrl;
+    window.open(authorizationUrl) ;
   };
 
   const createProference = async () => {

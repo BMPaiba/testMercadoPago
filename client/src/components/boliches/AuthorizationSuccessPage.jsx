@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AuthorizationSuccessPage = ({ location }) => {
+
+  const pathname = useSelector((state) => state.pathname);
+
+  console.log(pathname);
   //declarar location aqui se puede ?
 
   useEffect(() => {
@@ -29,6 +34,7 @@ const AuthorizationSuccessPage = ({ location }) => {
   return (
     <div>
       <h1>¡Bien ahi!</h1>
+      <h2>Esta Redireccion pertenece a {pathname}</h2>
     </div>
   );
 };
