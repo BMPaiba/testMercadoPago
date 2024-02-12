@@ -2,7 +2,7 @@ import { PATH, STATUS_LOGIN } from './actions.type'
 
 const initialState = {
     status_login: false,
-    pathanme: ''
+    pathanme: 'prueba 1'
 }
 
 const reducer = (state = initialState, action) => {
