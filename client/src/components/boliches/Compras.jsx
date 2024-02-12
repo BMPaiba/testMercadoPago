@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Compras() {
   const { pathname } = useLocation();
@@ -9,7 +10,7 @@ export default function Compras() {
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
 
-  const home = "/";
+  const home = "/admin";
 
   const goHome = (e) => {
     const { value } = e.target;
@@ -23,9 +24,6 @@ export default function Compras() {
     ? pathname.substring(1)
     : pathname;
 
-  // const pathToSend= 'tuturraca' //nombre del collaborator
-  // const pathToSend= 'narcoboli'
-
   const keyData = async () => {
     try {
       const { data } = await axios.post(key, { pathToSend });
@@ -35,12 +33,17 @@ export default function Compras() {
       console.error("Error al enviar la solicitud al servidor:", error);
     }
   };
-
-  console.log("key ==> ", apiKey);
-
   initMercadoPago(apiKey, {
     locale: "es-AR",
   });
+  const authorization = () => {
+    const redirectUri =
+      "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
+    const clientId = "7378685924902197";
+    const state = uuidv4();
+    const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
+    window.open(authorizationUrl, "_blank");
+  };
 
   const createProference = async () => {
     try {
@@ -97,13 +100,10 @@ export default function Compras() {
       {preferenceId && (
         <Wallet initialization={{ preferenceId: preferenceId }} />
       )}
-      {/* {preferenceId && (
-            <p>Redirigiendo a Mercado Pago...</p>
-          )} */}
-
       <button value={home} onClick={goHome}>
         Home
       </button>
+      <button onClick={authorization}>autorizar</button>
     </div>
   );
 }

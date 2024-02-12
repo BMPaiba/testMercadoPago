@@ -14,8 +14,7 @@ const AuthorizationSuccessPage = ({ location }) => {
     exchangeAuthorizationCodeForToken(code);
   }, [location.search]);
 
-  const exchangeAuthorizationCodeForToken = async (code) => {
-  
+  const exchangeAuthorizationCodeForToken = async (code) => {  
     axios
       .post("http://localhost:3000/mercadopago-authorization/success",{code})
       .then((response) => {

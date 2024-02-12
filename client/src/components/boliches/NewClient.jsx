@@ -17,7 +17,7 @@ export default function NewClient() {
   const navigate = useNavigate();
 
   const goHome = () => {
-    navigate("/");
+    navigate("/admin");
   };
 
   const createUser = (e) => {

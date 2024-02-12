@@ -1,0 +1,1 @@
+export const STATUS_LOGIN = "STATUS_LOGIN"
