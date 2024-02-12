@@ -4,6 +4,7 @@ const { ACCESS_TOKEN, CLIENT_ID, CLIENT_SECRET } = process.env;
 const axios = require("axios");
 
 const setToken = async (req, res) => {
+  try {
   const client = new MercadoPagoConfig({
     accessToken: ACCESS_TOKEN,
     options: { timeout: 5000 },
@@ -21,7 +22,6 @@ const setToken = async (req, res) => {
     redirect_uri: redirect_uri,
   };
 
-  try {
     const { data } = await axios.post(
       "https://api.mercadopago.com/oauth/token",
       postData,
