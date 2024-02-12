@@ -2,7 +2,7 @@ import { PATH, STATUS_LOGIN } from './actions.type'
 
 const initialState = {
     status_login: false,
-    pathname: 'prueba 1'
+    pathname: ''
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
             case PATH:
             return {
                 ...state,
-                pathanme: payload // Actualiza status_login usando el payload
+                pathname: payload // Actualiza status_login usando el payload
             };
         default:
             return state; // Devuelve el estado sin cambios si no hay acción correspondiente
