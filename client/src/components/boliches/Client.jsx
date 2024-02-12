@@ -16,6 +16,7 @@ export default function Client() {
     const clientId = "7378685924902197";
     const state = uuidv4();
     const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
+    log(authorizationUrl)
     window.open(authorizationUrl);
   };
 
