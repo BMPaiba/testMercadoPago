@@ -20,7 +20,7 @@ const AuthorizationSuccessPage = ({ location }) => {
       .post("http://localhost:3000/mercadopago-authorization/success",{code})
       .then((response) => {
         const {data} = response
-        console.log("Token de acceso:", data);
+        console.log("respuesta del back: ", data);
       })
       .catch((error) => {
         console.error("Error:", error.request);
@@ -30,7 +30,6 @@ const AuthorizationSuccessPage = ({ location }) => {
   return (
     <div>
       <h1>¡Autorización exitosa!</h1>
-      {/* Puedes agregar cualquier contenido adicional que desees mostrar en esta página */}
     </div>
   );
 };
