@@ -27,6 +27,8 @@ export default function Compras() {
       // Obtener la URL actual
   const currentUrl = window.location.href;
 
+  console.log(currentUrl);
+
   const keyData = async () => {
     try {
       const { data } = await axios.post(key, { pathToSend });
