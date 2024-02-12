@@ -27,6 +27,7 @@ export default function Compras() {
     ? pathname.substring(1)
     : pathname;
   
+    console.log(pathToSend);
 
   const keyData = async () => {
     try {
