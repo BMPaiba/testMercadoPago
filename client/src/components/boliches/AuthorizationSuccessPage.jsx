@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 const AuthorizationSuccessPage = ({ location }) => {
   const pathname = useSelector((state) => state.pathname);
 
-  console.log(pathname);
+  console.log('este es el pathname => ',pathname);
   //declarar location aqui se puede ?
 
   useEffect(() => {

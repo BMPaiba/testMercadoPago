@@ -12,11 +12,12 @@ export const statusLogin = () => {
     }
 }
 
-export const path = () => {
+export const path = (pathname) => {
     return async (disptatch) => {
         try {
             return disptatch ({
-                type: PATH,                
+                type: PATH,   
+                payload: pathname             
             })
         } catch (error) {
             console.log(error);
