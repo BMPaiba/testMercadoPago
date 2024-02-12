@@ -45,7 +45,7 @@ export default function Compras() {
     const clientId = "7378685924902197";
     const state = uuidv4();
     const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
-    window.open(authorizationUrl, "_blank");
+    window.open(authorizationUrl);
   };
 
   const createProference = async () => {
