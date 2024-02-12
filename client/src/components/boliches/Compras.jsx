@@ -24,6 +24,9 @@ export default function Compras() {
     ? pathname.substring(1)
     : pathname;
 
+      // Obtener la URL actual
+  const currentUrl = window.location.href;
+
   const keyData = async () => {
     try {
       const { data } = await axios.post(key, { pathToSend });
@@ -37,8 +40,8 @@ export default function Compras() {
     locale: "es-AR",
   });
   const authorization = () => {
-    const redirectUri =
-      "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
+    const redirectUri = urrentUrl 
+      // "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
     const clientId = "7378685924902197";
     const state = uuidv4();
     const authorizationUrl = `https://auth.mercadopago.com/authorization?client_id=${clientId}&response_type=code&platform_id=mp&state=${state}&redirect_uri=${redirectUri}`;
@@ -103,7 +106,7 @@ export default function Compras() {
       <button value={home} onClick={goHome}>
         Home
       </button>
-      <button onClick={authorization}>autorizar</button>
+      <button onClick={authorization}>autorizar ya!</button>
     </div>
   );
 }
