@@ -100,7 +100,7 @@ export default function Compras() {
 
   return (
     <div>
-      <h1>{pathToSend}</h1>
+      <h1>Bienvenidos al Dashboard de {cliente}</h1>
       <img src="" alt="" />
       <h3>BANANITA DOLCA</h3>
       <p>300 $</p>

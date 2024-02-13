@@ -11,6 +11,7 @@ export default function Login() {
   const statuslogin = useSelector((state) => state.status_login);
 
   console.log(pathname);
+  const admins = ["tuturraca", "narcoboli", "africa"];
   const tuturraca = "tuturraca";
   const narcoboli = "narcoboli";
 
@@ -25,12 +26,9 @@ export default function Login() {
   return (
     <div>
       <h1>Home</h1>
-      <button value={narcoboli} onClick={goCheckout}>
-        {narcoboli}
-      </button>
-      <button value={tuturraca} onClick={goCheckout}>
-        {tuturraca}
-      </button>
+      {admins.map((admin) => (
+        <button key={admin} value={admin} onClick={goCheckout}>{admin}</button>
+      ))}
     </div>
   );
 }
