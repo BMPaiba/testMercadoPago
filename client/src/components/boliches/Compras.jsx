@@ -41,8 +41,12 @@ export default function Compras() {
   initMercadoPago(apiKey, {
     locale: "es-AR",
   });
+
+  
+
   const authorization = () => {
     dispatch(path(pathToSend))
+    localStorage.setItem('pathname', pathToSend);
     const redirectUri ="https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
     const clientId = "7378685924902197";
     const state = uuidv4();
