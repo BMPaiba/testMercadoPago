@@ -42,10 +42,27 @@ export default function Compras() {
     locale: "es-AR",
   });
 
-  
+
+  const path = () => {
+    return new Promise((resolve, reject) => {
+        // Tu lógica para la función path aquí, incluido el dispatch
+        dispatch(pathActionCreator(pathToSend)); // Suponiendo que tengas un action creator llamado pathActionCreator
+        // Puedes agregar más lógica aquí si es necesario
+        resolve(); // Resuelve la promesa para indicar que la función path ha terminado
+    });
+};
+
+const clic = async () => {
+  try {
+      await path(); // Espera a que la función path termine
+      authorization(); // Llama a la función authorization después de que path haya terminado
+  } catch (error) {
+      console.error('Error en la función path:', error);
+      // Maneja cualquier error que pueda ocurrir durante la ejecución de la función path
+  }
+};
 
   const authorization = () => {
-    dispatch(path(pathToSend))
     localStorage.setItem('pathname', pathToSend);
     const redirectUri ="https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
     const clientId = "7378685924902197";
@@ -112,7 +129,7 @@ export default function Compras() {
       <button value={home} onClick={goHome}>
         Home
       </button>
-      <button onClick={authorization}>autorizar ya!</button>
+      <button onClick={clic}>autorizar ya!</button>
     </div>
   );
 }
