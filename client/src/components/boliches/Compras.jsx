@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
@@ -12,6 +12,8 @@ export default function Compras() {
   const navigate = useNavigate();
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
+  const { cliente } = useParams();
+
 
   const home = "/admin";
 
@@ -27,7 +29,7 @@ export default function Compras() {
     ? pathname.substring(1)
     : pathname;
   
-    console.log(pathToSend);
+    // console.log(pathToSend);
 
   const keyData = async () => {
     try {
@@ -43,27 +45,9 @@ export default function Compras() {
   });
 
 
-  const path = () => {
-    return new Promise((resolve, reject) => {
-        // Tu lógica para la función path aquí, incluido el dispatch
-        dispatch(pathActionCreator(pathToSend)); // Suponiendo que tengas un action creator llamado pathActionCreator
-        // Puedes agregar más lógica aquí si es necesario
-        resolve(); // Resuelve la promesa para indicar que la función path ha terminado
-    });
-};
-
-const clic = async () => {
-  try {
-      await path(); // Espera a que la función path termine
-      authorization(); // Llama a la función authorization después de que path haya terminado
-  } catch (error) {
-      console.error('Error en la función path:', error);
-      // Maneja cualquier error que pueda ocurrir durante la ejecución de la función path
-  }
-};
 
   const authorization = () => {
-    localStorage.setItem('pathname', pathToSend);
+    localStorage.setItem('pathname', cliente);
     const redirectUri ="https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
     const clientId = "7378685924902197";
     const state = uuidv4();
@@ -111,8 +95,6 @@ const clic = async () => {
       setPreferenceId(preferenceId);
     }
     console.log("preference id : ", preferenceId);
-    // const urlMercadoPago = `https://www.mercadopago.com.ar/checkout/v1/payment/redirect/${8cccba06-68d7-45ed-be60-583fbe57c7ef}/payment-option-form/?preference-id=${preferenceId}&correlation_id=${fe7e5d31-5e2d-4f71-9592-a591fd551af4}&sniffing-rollout=sniffing-api&router-request-id=${88ca1aaa-f591-4d10-9087-a16c8222d9aa}&p=72f5bc1d72d0bae0385b00c3c93b69f7#/`;
-    // window.location.href = urlMercadoPago; // hay mas datos que no estoy viendo. como por ejemplo el MONTO TOTAL y tal vez el detalle de los productos
   };
 
   return (
@@ -129,7 +111,7 @@ const clic = async () => {
       <button value={home} onClick={goHome}>
         Home
       </button>
-      <button onClick={clic}>autorizar ya!</button>
+      <button onClick={authorization}>autorizar ya!</button>
     </div>
   );
 }
