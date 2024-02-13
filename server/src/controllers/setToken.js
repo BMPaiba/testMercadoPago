@@ -13,7 +13,7 @@ const setToken = async (req, res) => {
     });
 
     const boliId = searchBoli.dataValues.id;
-    // console.log('boliche encontrado => ',boliId);
+    console.log('boliche encontrado => ',boliId);
 
     const client = new MercadoPagoConfig({
       accessToken: ACCESS_TOKEN,
