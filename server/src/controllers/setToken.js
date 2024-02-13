@@ -34,28 +34,29 @@ const setToken = async (req, res) => {
       redirect_uri: redirect_uri,
     };
 
-    // const { data } = await axios.post(
-    //   "https://api.mercadopago.com/oauth/token",
-    //   postData,
-    //   {
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
+    const { data } = await axios.post(
+      "https://api.mercadopago.com/oauth/token",
+      postData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    const data = {
-      access_token:
-        "3APP_USR-7378685924902197-021209-90fc5433314244028aefc252ce86ea53-1672284877",
-      token_type: "Bearer",
-      expires_in: 15552000,
-      scope: "offline_access read write",
-      user_id: 1672284881,
-      refresh_token: "TG-65ca21f08b82b10001674275-1672284877",
-      public_key: "APP_USR-1f5e5952-6698-49c2-9b19-af32ab29dece",
-      live_mode: true,
-      AdministratorId: boliId,
-    };
+    // const data = {
+    //   access_token:
+    //     "4APP_USR-7378685924902197-021209-90fc5433314244028aefc252ce86ea53-1672284877",
+    //   token_type: "Bearer",
+    //   expires_in: 15552000,
+    //   scope: "offline_access read write",
+    //   user_id: 1572284881,
+    //   refresh_token: "TG-65ca21f08b82b10001674275-1672284877",
+    //   public_key: "APP_USR-1f5e5952-6698-49c2-9b19-af32ab29dece",
+    //   live_mode: true,
+    // };
+
+    data.AdministratorId = boliId;
 
     const newAutorization = await Autorizaciones.findOrCreate({
       where: { user_id: data.user_id },
