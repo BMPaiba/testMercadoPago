@@ -15,11 +15,13 @@ const AuthorizationSuccessPage = ({ location }) => {
     exchangeAuthorizationCodeForToken(code);
   }, [location.search]);
 
+
   const exchangeAuthorizationCodeForToken = async (code) => {
     try {
-      const data = await axios.post(
+      console.log('entrando');
+      const {data} = await axios.post(
         "http://localhost:3000/mercadopago-authorization/success",
-        { code }
+        { code , path }
       );
       console.log("respuesta del back: ", data);
     } catch (error) {

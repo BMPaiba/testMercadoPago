@@ -2,15 +2,27 @@ const { MercadoPagoConfig, OAuth } = require("mercadopago");
 require("dotenv").config();
 const { ACCESS_TOKEN, CLIENT_ID, CLIENT_SECRET } = process.env;
 const axios = require("axios");
+const { Autorizaciones, Administrator } = require("../db");
 
 const setToken = async (req, res) => {
   try {
+    const boliche = "africa";
+
+    const searchBoli = await Administrator.findOne({
+      where: { name: boliche },
+    });
+
+    const boliId = searchBoli.dataValues.id;
+    // console.log('boliche encontrado => ',boliId);
+
     const client = new MercadoPagoConfig({
       accessToken: ACCESS_TOKEN,
       options: { timeout: 5000 },
     });
 
-    const { code } = req.body;
+    const { code, path } = req.body;
+    console.log(path);
+
     const redirect_uri =
       "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
 
@@ -34,22 +46,27 @@ const setToken = async (req, res) => {
 
     const data = {
       access_token:
-        "APP_USR-7378685924902197-021209-90fc5433314244028aefc252ce86ea53-1672284877",
+        "3APP_USR-7378685924902197-021209-90fc5433314244028aefc252ce86ea53-1672284877",
       token_type: "Bearer",
       expires_in: 15552000,
       scope: "offline_access read write",
-      user_id: 1672284877,
+      user_id: 1672284881,
       refresh_token: "TG-65ca21f08b82b10001674275-1672284877",
       public_key: "APP_USR-1f5e5952-6698-49c2-9b19-af32ab29dece",
       live_mode: true,
+      AdministratorId: boliId,
     };
 
-    if(data){
-      console.log('ususario registrado correctamente');
-    }
-    console.log(data);
-    return res.status(201).json(data);
+    const newAutorization = await Autorizaciones.findOrCreate({
+      where: { user_id: data.user_id },
+      defaults: data,
+    });
+
+    // console.log('nuevos datos guardados en la base de datos',newAutorization[0].dataValues);
+
+    return res.status(201).json(newAutorization[0].dataValues);
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json({ error: error.message });
   }
 

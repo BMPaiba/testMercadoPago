@@ -13,14 +13,6 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      token: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      key: {
-        type: DataTypes.STRING,
-        allowNull: false,
       }
       
     },
