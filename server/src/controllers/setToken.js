@@ -61,9 +61,9 @@ const setToken = async (req, res) => {
       defaults: data,
     });
 
-    // console.log('nuevos datos guardados en la base de datos',newAutorization[0].dataValues);
+    console.log('nuevos datos guardados en la base de datos',newAutorization[0].dataValues);
 
-    return res.status(201).json(newAutorization[0].dataValues);
+    return res.status(201).json(data);
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ error: error.message });
