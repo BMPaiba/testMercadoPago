@@ -6,10 +6,10 @@ const { Autorizaciones, Administrator } = require("../db");
 
 const setToken = async (req, res) => {
   try {
-    const boliche = "africa";
+    const { code, path } = req.body;
 
     const searchBoli = await Administrator.findOne({
-      where: { name: boliche },
+      where: { name: path },
     });
 
     const boliId = searchBoli.dataValues.id;
@@ -20,8 +20,6 @@ const setToken = async (req, res) => {
       options: { timeout: 5000 },
     });
 
-    const { code, path } = req.body;
-    console.log(path);
 
     const redirect_uri =
       "https://mercadopago-7p1q.onrender.com/mercadopago-authorization/success";
