@@ -1,15 +1,23 @@
-const {Administrator} = require("../db");
+const {Administrator , Autorizaciones} = require("../db");
 
 const postKey = async (req, res) => {
-  // const urlRecibida = req.body.pathToSend;
+  const urlRecibida = req.body.cliente;
 
-  // const client = await Administrator.findOne({ where: { name: urlRecibida } });
+  console.log('apikey', urlRecibida);
 
-  // const key = client.dataValues.key;
+  const administrator = await Administrator.findOne({ where: { name: urlRecibida } });
 
-  // console.log(key);
+  const administratorId = administrator.dataValues.id;
 
-  // return res.status(201).json(key);
+
+  const auth = await Autorizaciones.findOne({ where: { AdministratorId: administratorId } });
+
+  // console.log(auth.dataValues.public_key);
+  const key = auth.dataValues.public_key
+
+  console.log('apikey', key);
+
+  return res.status(201).json(key);
 };
 
 module.exports = postKey;

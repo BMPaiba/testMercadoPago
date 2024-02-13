@@ -1,5 +1,5 @@
 const { Preference, default: MercadoPagoConfig } = require("mercadopago");
-const {Administrator} = require("../db");
+const {Administrator , Autorizaciones} = require("../db");
 const mercadopago = require("mercadopago"); // require
 
 const postPurchase = async (req, res) => {
@@ -7,11 +7,21 @@ const postPurchase = async (req, res) => {
 
         const urlRecibida = req.body.path;  
 
-        // console.log(mercadopago.MerchantOrder);
+            console.log('token', urlRecibida);
 
-        const searchToken = await Administrator.findOne({ where: { name: urlRecibida } }); 
+            const administrator = await Administrator.findOne({ where: { name: urlRecibida } });
 
-        const token = searchToken.dataValues.token
+            const administratorId = administrator.dataValues.id;
+          
+          
+            const auth = await Autorizaciones.findOne({ where: { AdministratorId: administratorId } });
+          
+        
+            const token = auth.dataValues.access_token
+
+            console.log('token', token);
+
+        // const token = searchToken.dataValues.token
 
         // dentro del modelo administrator
         //columna mercadopago token =>  si tiene, esta habilitado para recibir pagos

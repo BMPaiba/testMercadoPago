@@ -1,13 +1,22 @@
  const {Administrator} = require("../db");
 
 const postURL = async (req, res) => {
-  const urlRecibida = req.body.pathToSend;
+//   const urlRecibida = req.body.cliente;
 
-  const client = await Administrator.findOne({ where: { name: urlRecibida } });
+//   console.log('recibida' , urlRecibida);
 
-  console.log(client.dataValues.key);
+//   const administrator = await Administrator.findOne({ where: { name: urlRecibida } });
 
-  return res.status(201).json(urlRecibida);
+//   const administratorId = administrator.dataValues.id;
+
+
+//   const auth = await Autorizaciones.findOne({ where: { AdministratorId: administratorId } });
+
+//   // console.log(auth.dataValues.public_key);
+//   const key = auth.dataValues.public_key
+
+//   console.log(token);
+
+//   return res.status(201).json(key);
 };
-
 module.exports = postURL;

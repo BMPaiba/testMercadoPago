@@ -30,11 +30,12 @@ export default function Compras() {
     : pathname;
   
     // console.log(pathToSend);
+    
+      localStorage.setItem('pathname', cliente);
 
   const keyData = async () => {
     try {
-      const { data } = await axios.post(key, { pathToSend });
-      console.log(data);
+      const { data } = await axios.post(key, { cliente });
       setapiKey(data);
     } catch (error) {
       console.error("Error al enviar la solicitud al servidor:", error);
@@ -43,7 +44,6 @@ export default function Compras() {
   initMercadoPago(apiKey, {
     locale: "es-AR",
   });
-
 
 
   const authorization = () => {
@@ -57,13 +57,14 @@ export default function Compras() {
 
   const createProference = async () => {
     try {
+      console.log('post purchase');
       const response = await axios.post(
         "http://localhost:3000/create_preference",
         {
           title: "BANANITA DOLCA",
           quantity: 1,
           price: 10,
-          path: pathToSend,
+          path: cliente,
         }
       );
 
@@ -78,7 +79,7 @@ export default function Compras() {
 
   const fetchData = async () => {
     try {
-      const { data } = await axios.post(url, { pathToSend });
+      const { data } = await axios.post(url, { cliente });
       console.log(data);
       setData(data);
     } catch (error) {
@@ -88,7 +89,7 @@ export default function Compras() {
 
   const goCheckout = async () => {
     await keyData();
-    await fetchData();
+    // await fetchData();
     const preferenceId = await createProference();
 
     if (preferenceId) {
