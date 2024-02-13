@@ -4,21 +4,14 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const AuthorizationSuccessPage = ({ location }) => {
-  const pathname = useSelector((state) => state.pathname);
 
-  console.log("este es el pathname => ", pathname);
-  //declarar location aqui se puede ?
 
   const path = localStorage.getItem("pathname");
-  // Utilizar el estado actualizado en la nueva ventana
-  console.log(path);
 
   useEffect(() => {
-    // Extraer el código de autorización de la URL
     const searchParams = new URLSearchParams(location.search);
     const code = searchParams.get("code");
     console.log("aqui es un log actualizado", code);
-    // Intercambiar el código de autorización por un token de acceso
     exchangeAuthorizationCodeForToken(code);
   }, [location.search]);
 
@@ -47,7 +40,6 @@ const AuthorizationSuccessPage = ({ location }) => {
   return (
     <div>
       <h1>¡Bien ahi!</h1>
-      <h2>Esta Redireccion pertenece a {pathname}</h2>
       <h2>Esta Redireccion pertenece a {path}</h2>
     </div>
   );
