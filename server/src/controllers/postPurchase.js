@@ -5,6 +5,8 @@ const mercadopago = require("mercadopago"); // require
 const postPurchase = async (req, res) => {
     try {
 
+        // console.log(mercadopago);
+
         const urlRecibida = req.body.path;  
 
             console.log('token', urlRecibida);
@@ -32,22 +34,12 @@ const postPurchase = async (req, res) => {
               token, //pasarle el token publico
           });
 
+          const products = req.body.products;  
+
+          console.log(products);
         
         const body = {
-            items: [
-                {
-                    title: req.body.title,
-                    quantity: Number(req.body.quantity),
-                    unit_price: 10,
-                    currency_id: "ARS",
-                },
-                {
-                    title: req.body.title,
-                    quantity: Number(req.body.quantity),
-                    unit_price: 50,
-                    currency_id: "ARS",
-                }
-            ],
+            items: products,
             back_urls: {
                 success: `https://www.youtube.com`,
                 failure: "https://www.youtube.com",
@@ -63,7 +55,7 @@ const postPurchase = async (req, res) => {
         })
     }
     catch (error) {
-        console.log(error);
+        console.log('error => ', error);
         res.status(500).json({
             error: "Error al crear la preferencia :("
         });
@@ -76,3 +68,4 @@ const postPurchase = async (req, res) => {
 
 
 
+//   https://www.mercadopago.com.ar/checkout/v1/payment/redirect/e4d090ce-a217-4254-9a4f-08d68d598ff8/congrats/approved/?preference-id=1681919110-c138874c-f1e0-44d2-b5cb-b6b0df052cc1&correlation_id=1b237b49-0be1-496e-b873-9a3c6d032a8e&sniffing-rollout=sniffing-api&router-request-id=f236fd20-9f74-4e27-8af8-1fcdc37a8c54&p=72f5bc1d72d0bae0385b00c3c93b69f7  
