@@ -21,7 +21,7 @@ router.post('/key', postKey)
 router.post('/mercadopago-authorization/success' , setToken)
 router.get('/mercadopago-authorization/success' , getTokens)
 router.post('/refunded' , postDev)
-router.get('/webhook', webhook)
+router.post('/webhook', webhook)
 
 //router.get( '/mercadopago-authorization/success' , setToken) //guardar token publico del administrador => redireccionar al panel y mostrar como autorizado
 //o a otro componente =>  autorizacion completa
