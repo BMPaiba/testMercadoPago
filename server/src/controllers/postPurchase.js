@@ -4,7 +4,7 @@ const mercadopago = require("mercadopago"); // require
 
 const postPurchase = async (req, res) => {
   try {
-    const urlRecibida = req.body.path;
+    const cliente = req.body.path;
     const administrator = await Administrator.findOne({
       where: { name: urlRecibida },
     });
@@ -21,11 +21,11 @@ const postPurchase = async (req, res) => {
     const body = {
       items: products,
       back_urls: {
-        success: `https://mercadopago-7p1q.onrender.com/:cliente/paymentsuccess`,
+        success: `https://mercadopago-7p1q.onrender.com/${cliente}/paymentsuccess`,
         // failure: "https://www.youtube.com",
         // pending: "https://www.youtube.com",
       },
-      notification_url: "https://mercadopago-7p1q.onrender.com/:cliente/paymentsuccess",
+      notification_url: `https://mercadopago-7p1q.onrender.com/${cliente}/paymentsuccess`,
     };
     const preference = new Preference(client);
     const result = await preference.create({ body });
