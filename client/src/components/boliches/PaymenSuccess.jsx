@@ -7,6 +7,7 @@ export default function PaymenSuccess() {
   const location = useLocation();
   const urlParams = new URLSearchParams(window.location.search);
   const paymentId = urlParams.get("payment_id");
+  const { datoDeUrl } = useParams();
 
  
   useEffect(() => {
