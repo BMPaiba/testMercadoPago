@@ -175,7 +175,7 @@ export default function Compras() {
         </button>
         <div></div>
         {preferenceId && (
-          <Wallet className={styles.button} initialization={{ preferenceId: preferenceId }} />
+          <Wallet className={styles.button} initialization={{ preferenceId: preferenceId, redirectMode: "modal" }} />
         )}
         <button className={styles.button} onClick={authorization}>
           autorizar ya!

@@ -5,6 +5,7 @@ import NewClient from "./components/mercadopago/NewClient";
 import AuthorizationSuccessPage from "./components/boliches/AuthorizationSuccessPage";
 import Login from "./components/boliches/Login";
 import Client from "./components/mercadopago/Client";
+import PaymenSuccess from "./components/boliches/PaymenSuccess";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
 
         <Route path="/" element={<Home />} />{" "}
         <Route path="/admin" element={<Login />} />{" "} 
+        <Route path="/:client/paymentsuccess" element={<PaymenSuccess />} />{" "} 
         <Route path="/admin/:cliente/dashboard" element={<Compras />} />{" "} 
         <Route path="/admin/:cliente" element={<Compras />} />
         <Route path="/admin/:cliente/addclient" element={<NewClient />} />

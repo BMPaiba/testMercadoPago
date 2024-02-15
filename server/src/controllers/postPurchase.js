@@ -21,15 +21,14 @@ const postPurchase = async (req, res) => {
     const body = {
       items: products,
       back_urls: {
-        success: `https://www.youtube.com`,
-        failure: "https://www.youtube.com",
-        pending: "https://www.youtube.com",
+        success: `https://mercadopago-7p1q.onrender.com/`,
+        // failure: "https://www.youtube.com",
+        // pending: "https://www.youtube.com",
       },
-      notification_url: "https://mercadopago-7p1q.onrender.com/webhook",
+      notification_url: "https://mercadopago-7p1q.onrender.com/:client/paymentsuccess",
     };
     const preference = new Preference(client);
     const result = await preference.create({ body });
-    console.log(result);
     res.json({
       id: result.id,
     });
