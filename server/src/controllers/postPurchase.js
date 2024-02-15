@@ -21,7 +21,7 @@ const postPurchase = async (req, res) => {
     const body = {
       items: products,
       back_urls: {
-        success: `https://mercadopago-7p1q.onrender.com/`,
+        success: `https://mercadopago-7p1q.onrender.com/:client/paymentsuccess`,
         // failure: "https://www.youtube.com",
         // pending: "https://www.youtube.com",
       },
