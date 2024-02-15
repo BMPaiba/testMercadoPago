@@ -13,6 +13,7 @@ export default function Compras() {
   const navigate = useNavigate();
   const url = "http://localhost:3000/url";
   const key = "http://localhost:3000/key";
+  
   const { cliente } = useParams();
  
   const [products, setProducts] = useState([]);

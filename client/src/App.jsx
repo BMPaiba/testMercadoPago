@@ -11,10 +11,9 @@ function App() {
   return (
     <>
       <Routes>
-
         <Route path="/" element={<Home />} />{" "}
         <Route path="/admin" element={<Login />} />{" "} 
-        <Route path="/:client/paymentsuccess" element={<PaymenSuccess />} />{" "} 
+        <Route path="/:cliente/paymentsuccess" element={<PaymenSuccess />} />{" "} 
         <Route path="/admin/:cliente/dashboard" element={<Compras />} />{" "} 
         <Route path="/admin/:cliente" element={<Compras />} />
         <Route path="/admin/:cliente/addclient" element={<NewClient />} />
