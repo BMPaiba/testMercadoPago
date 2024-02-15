@@ -6,7 +6,7 @@ const postPurchase = async (req, res) => {
   try {
     const cliente = req.body.path;
     const administrator = await Administrator.findOne({
-      where: { name: urlRecibida },
+      where: { name: cliente },
     });
     const administratorId = administrator.dataValues.id;
     const auth = await Autorizaciones.findOne({
